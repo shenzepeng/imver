@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * @Auther: szp
  * @Date: 2020/4/20 21:14
- * @Description: 沈泽鹏写点注释吧
+ * @Description: md5
  */
 public class MD5Utils {
     public static String stringToMD5(String plainText) {
