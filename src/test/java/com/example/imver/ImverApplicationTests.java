@@ -16,6 +16,7 @@ class ImverApplicationTests {
     void contextLoads() throws ExecutionException {
         LoadingCache<String, String> cache = userInfoCache.getCache();
         System.out.println(cache.get("a"));
+
     }
 
 }
