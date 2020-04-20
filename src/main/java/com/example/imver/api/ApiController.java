@@ -118,22 +118,22 @@ public class ApiController {
         LoadingCache<String, List<String>> sessionCache = this.sessionCache.getSessionCache();
         List<String> ks = sessionCache.get(sessionId);
         AtomicInteger keyANumber=new AtomicInteger(0);
-        AtomicInteger keyBNumber=new AtomicInteger(0);
+        AtomicInteger keyCNumber=new AtomicInteger(0);
         for (String k : ks) {
             int number1 = getNumber(k, keyA);
             if (number1>0){
                 keyANumber.getAndIncrement();
                 continue;
             }
-            int number2 = getNumber(k, keyB);
+            int number2 = getNumber(k, keyC);
             if (number2>0) {
-                keyBNumber.getAndIncrement();
+                keyCNumber.getAndIncrement();
             }
         }
-        if (keyANumber.get()>keyBNumber.get()){
+        if (keyANumber.get()>keyCNumber.get()){
             return keyA;
         }else {
-            return keyB;
+            return keyC;
         }
     }
 
