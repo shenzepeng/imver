@@ -117,12 +117,12 @@ public class ApiController {
     public String verNumber(String keyB,String keyA,String keyC,String sessionId){
         LoadingCache<String, List<String>> sessionCache = this.sessionCache.getSessionCache();
         List<String> ks = sessionCache.get(sessionId);
-        AtomicInteger keyANumber=new AtomicInteger(0);
+        AtomicInteger keyBNumber=new AtomicInteger(0);
         AtomicInteger keyCNumber=new AtomicInteger(0);
         for (String k : ks) {
-            int number1 = getNumber(k, keyA);
+            int number1 = getNumber(k,keyB);
             if (number1>0){
-                keyANumber.getAndIncrement();
+                keyBNumber.getAndIncrement();
                 continue;
             }
             int number2 = getNumber(k, keyC);
@@ -130,8 +130,8 @@ public class ApiController {
                 keyCNumber.getAndIncrement();
             }
         }
-        if (keyANumber.get()>keyCNumber.get()){
-            return keyA;
+        if (keyBNumber.get()>keyCNumber.get()){
+            return keyB;
         }else {
             return keyC;
         }
