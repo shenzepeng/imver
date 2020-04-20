@@ -115,14 +115,18 @@ public class ApiController {
     @SneakyThrows
     @GetMapping("ver")
     public String verNumber(String keyB,String keyA,String keyC,String sessionId){
+        String keySkim = userInfoCache.getCache().get(keyB);
+        if (StringUtils.isEmpty(keySkim)){
+            throw new RuntimeException("keyA is not right");
+        }
         LoadingCache<String, List<String>> sessionCache = this.sessionCache.getSessionCache();
         List<String> ks = sessionCache.get(sessionId);
-        AtomicInteger keyBNumber=new AtomicInteger(0);
+        AtomicInteger keyANumber=new AtomicInteger(0);
         AtomicInteger keyCNumber=new AtomicInteger(0);
         for (String k : ks) {
             int number1 = getNumber(k,keyB);
             if (number1>0){
-                keyBNumber.getAndIncrement();
+                keyANumber.getAndIncrement();
                 continue;
             }
             int number2 = getNumber(k, keyC);
@@ -130,8 +134,8 @@ public class ApiController {
                 keyCNumber.getAndIncrement();
             }
         }
-        if (keyBNumber.get()>keyCNumber.get()){
-            return keyB;
+        if (keyANumber.get()>keyCNumber.get()){
+            return keyA;
         }else {
             return keyC;
         }
