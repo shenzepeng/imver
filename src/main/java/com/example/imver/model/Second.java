@@ -17,6 +17,6 @@ public class Second {
         Map<String, Object> init = RsaTool.init();
         String privateKey = RsaTool.getPrivateKey(init);
         second.msg = RsaTool.encryptByPrivateKey(UUID.randomUUID().toString(), privateKey);
-        System.out.println("第二个 "+second);
+        System.out.println("second "+second);
     }
 }

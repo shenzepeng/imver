@@ -10,9 +10,9 @@ public class Third {
         Third third=new Third();
         int end=(int)(Math.random()*100);
         if (end>50){
-            System.out.println("第三次 验证结果 "+true);
+            System.out.println("third 验证结果 "+true);
         }else {
-            System.out.println("第三次 验证结果 "+false);
+            System.out.println("third 验证结果 "+false);
         }
     }
 }
